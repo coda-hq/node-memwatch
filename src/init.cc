@@ -15,7 +15,7 @@ extern "C" {
 
         Nan::HandleScope scope;
         heapdiff::HeapDiff::Initialize(target);
-
+        
         Nan::SetMethod(target, "upon_gc", memwatch::upon_gc);
         Nan::SetMethod(target, "gc", memwatch::trigger_gc);
 

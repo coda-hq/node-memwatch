@@ -10,6 +10,10 @@
 #include <node.h>
 #include <nan.h>
 
+namespace v8 {
+  template <class T> using Handle = Local<T>;
+}
+
 namespace heapdiff
 {
     class HeapDiff : public Nan::ObjectWrap

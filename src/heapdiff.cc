@@ -68,7 +68,6 @@ NAN_METHOD(heapdiff::HeapDiff::New)
     if (!info.IsConstructCall()) {
         return Nan::ThrowTypeError("Use the new operator to create instances of this object.");
     }
-    
     Nan::HandleScope scope;
 
     // allocate the underlying c++ class and wrap it up in the this pointer

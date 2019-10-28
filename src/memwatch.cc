@@ -90,8 +90,7 @@ static Local<Value> getLeakReport(size_t heapUsage)
     return scope.Escape(leakReport);
 }
 
-static void AsyncMemwatchAfter(uv_work_t* request)
-{
+static void AsyncMemwatchAfter(uv_work_t* request) {
     Nan::HandleScope scope;
 
     Local<Context> context = v8::Isolate::GetCurrent()->GetCurrentContext();
@@ -223,7 +222,6 @@ void memwatch::after_gc(Isolate* isolate, GCType type, GCCallbackFlags flags)
     if (heapdiff::HeapDiff::InProgress()) return;
 
     Nan::HandleScope scope;
-    
     Baton * baton = new Baton;
     v8::HeapStatistics hs;
 
@@ -245,7 +243,6 @@ void memwatch::after_gc(Isolate* isolate, GCType type, GCCallbackFlags flags)
 
 NAN_METHOD(memwatch::upon_gc) {
     Nan::HandleScope scope;
-
     if (info.Length() >= 1 && info[0]->IsFunction()) {
         g_cb = new Nan::Callback(info[0].As<v8::Function>());
     }
@@ -254,7 +251,6 @@ NAN_METHOD(memwatch::upon_gc) {
 
 NAN_METHOD(memwatch::trigger_gc) {
     Nan::HandleScope scope;
-
     int deadline_in_ms = 500;
     if (info.Length() >= 1 && info[0]->IsNumber()) {
             deadline_in_ms = (int)Nan::To<int32_t>(info[0]).FromJust();
